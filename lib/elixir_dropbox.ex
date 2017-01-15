@@ -6,12 +6,12 @@ defmodule ElixirDropbox do
 
   @type response :: {any}
 
-  @base_url Application.get_env(:elixir_dropbox, :base_url)
-  @upload_url Application.get_env(:elixir_dropbox, :upload_url)
+  def base_url, do: Application.get_env(:elixir_dropbox, :base_url)
+  def upload_url, do: Application.get_env(:elixir_dropbox, :upload_url)
 
   def post(client, url, body \\ "") do
     headers = json_headers
-    post_request(client, "#{@base_url}#{url}", body, headers)
+    post_request(client, "#{base_url()}#{url}", body, headers)
   end
 
   @spec upload_response(HTTPoison.Response.t) :: response
@@ -33,6 +33,7 @@ defmodule ElixirDropbox do
   end
 
   def post_request(client, url, body, headers) do
+    IO.inspect(url)
     headers = Map.merge(headers, headers(client))
     HTTPoison.post!(url, body, headers) |> upload_response
   end
@@ -53,11 +54,11 @@ defmodule ElixirDropbox do
   end
   
   def upload_request(client, url, data, headers) do
-    post_request(client, "#{@upload_url}#{url}", {:file, data}, headers)
+    post_request(client, "#{upload_url()}#{url}", {:file, data}, headers)
   end
 
   def download_request(client, url, data, headers) do
     headers = Map.merge(headers, headers(client))
-    HTTPoison.post!("#{@upload_url}#{url}", data, headers) |> download_response
+    HTTPoison.post!("#{upload_url()}#{url}", data, headers) |> download_response
   end
 end
