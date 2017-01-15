@@ -8,7 +8,7 @@ defmodule ElixirDropbox.Mixfile do
   def project do
     [app: :elixir_dropbox,
      version: "0.0.4",
-     elixir: "~> 1.2",
+     elixir: ">= 1.2",
      name: "ElixirDropbox",
      description: @description,
      package: package,
@@ -28,9 +28,9 @@ defmodule ElixirDropbox.Mixfile do
   defp deps do
     [
       { :httpoison, "~> 0.8" },
-      { :poison, "~> 1.5" },
+      { :poison, ">= 1.5" },
       { :inch_ex, "~> 0.5", only: [:dev, :test] },
-      { :json, "~> 0.3.0" },
+      { :json, ">= 0.3.0" },
       { :ex_doc, github: "elixir-lang/ex_doc" } 
     ]
   end
