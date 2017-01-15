@@ -8,7 +8,7 @@ defmodule ElixirDropbox.Mixfile do
   def project do
     [app: :elixir_dropbox,
      version: "0.0.4",
-     elixir: ">= 1.2",
+     elixir: ">= 1.3.4",
      name: "ElixirDropbox",
      description: @description,
      package: package,
