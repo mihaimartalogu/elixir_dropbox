@@ -21,9 +21,13 @@ defmodule ElixirDropbox.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :httpoison]]
+    [applications: [:logger, :httpoison],
+    env: [
+      base_url: "https://api.dropboxapi.com/2",
+      upload_url: "https://content.dropboxapi.com/2/"]
+    ]
   end
-
+  
   # Type "mix help deps" for more examples and options
   defp deps do
     [
